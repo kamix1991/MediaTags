@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JLayeredPane" name="jLayeredPane1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -77,9 +94,10 @@
                   <Component id="jButtonJPEG" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonAVI" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="245" max="32767" attributes="0"/>
+                  <EmptySpace pref="201" max="32767" attributes="0"/>
+                  <Component id="Save" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Component id="jTextFieldPath" alignment="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jTextFieldPath" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -91,6 +109,7 @@
                       <Component id="jButtonMP3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonJPEG" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonAVI" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Save" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
               </Group>
@@ -126,6 +145,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="/home/kamix/Dokumenty/semestr 6/Techniki multimedialne/projekt/MediaTags/files"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Save">
+          <Properties>
+            <Property name="label" type="java.lang.String" value="Save"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

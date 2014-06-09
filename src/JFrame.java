@@ -3,6 +3,10 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import java.io.File;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +28,7 @@ public class JFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -32,6 +37,18 @@ public class JFrame extends javax.swing.JFrame {
         jButtonAVI = new javax.swing.JButton();
         jButtonJPEG = new javax.swing.JButton();
         jTextFieldPath = new javax.swing.JTextField();
+        Save = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,6 +91,13 @@ public class JFrame extends javax.swing.JFrame {
 
         jTextFieldPath.setText("/home/kamix/Dokumenty/semestr 6/Techniki multimedialne/projekt/MediaTags/files");
 
+        Save.setLabel("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,7 +109,8 @@ public class JFrame extends javax.swing.JFrame {
                 .addComponent(jButtonJPEG)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAVI)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addComponent(Save))
             .addComponent(jTextFieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,7 +121,8 @@ public class JFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonMP3)
                     .addComponent(jButtonJPEG)
-                    .addComponent(jButtonAVI))
+                    .addComponent(jButtonAVI)
+                    .addComponent(Save))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
@@ -249,7 +275,7 @@ public class JFrame extends javax.swing.JFrame {
             Metadata metadata;
             for (File file : listOfFiles) {
 
-                if (file.getName().toLowerCase().endsWith(".jpeg") || file.getName().toLowerCase().endsWith(".jpg")) {
+                if(file.getName().toLowerCase().endsWith(".jpeg") || file.getName().toLowerCase().endsWith(".jpg")) {
                     metadata = ImageMetadataReader.readMetadata(file);
                     data[i][0] = file.getName();
                     for (Directory directory : metadata.getDirectories()) {
@@ -293,6 +319,31 @@ public class JFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonJPEGActionPerformed
 
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            
+            SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyyMMddkkmmss");
+            //System.out.println(  );
+            
+            
+            
+            PrintWriter zapis = new PrintWriter("logi/" + simpleDateHere.format(new Date()) + ".txt");
+            for(int row = 0; row < jTable1.getRowCount(); row++) {
+
+            for(int column = 0; column < jTable1.getColumnCount(); column++) {
+                zapis.print(jTable1.getColumnName(column) + ": ");
+                zapis.println(jTable1.getValueAt(row, column));
+            }
+                zapis.println(""); // Add line space
+            }
+            zapis.close();
+        }catch(Exception e){
+            System.exit(1);
+        }
+    }//GEN-LAST:event_SaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,9 +380,11 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Save;
     private javax.swing.JButton jButtonAVI;
     private javax.swing.JButton jButtonJPEG;
     private javax.swing.JButton jButtonMP3;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
